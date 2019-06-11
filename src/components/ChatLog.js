@@ -1,15 +1,31 @@
 import React from 'react';
 import '../App.css';
-// import Message from './Message';
+import Message from './Message';
+import PropTypes from 'prop-types';
 
 const ChatLog = (props) => {
+  const messageComponents = props.allMessages.map((messageFromArray, i) => {
+      return (
+        <Message
+        key={i}
+        sender={messageFromArray.sender}
+        body={messageFromArray.body}
+        time={messageFromArray.timeStamp} />);
+  });
+
   return (
-    <div>
-      <p>Vladimir</p>
-      <p>why are you arguing with me</p>
-      <p>2018-05-29T22:49:06+00:00"</p>
-    </div>
+    <section className="">{messageComponents}</section>
   )
 };
+
+// NEED TO ADD PROPTYPES AND DEFAULT PROPS
+ChatLog.propTypes = {
+  // fullName: PropTypes.string.isRequired,
+  // email: PropTypes.string,
+}
+
+ChatLog.defaultProps = {
+  // email: 'no email on file',
+}
 
 export default ChatLog;
